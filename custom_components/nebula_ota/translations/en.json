@@ -1,0 +1,39 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Nebula OTA",
+        "description": "Serve Nebula Cosmos UI updates from this Home Assistant instance.",
+        "data": {
+          "builds_dir": "Build directory (absolute, or relative to the config folder)",
+          "base_url": "Base URL for download links (blank = auto-detect)",
+          "token": "Shared secret required as ?token= on the feed and downloads (blank = open on the LAN)",
+          "channel": "Default channel (romtype) for builds with no sidecar"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "Nebula OTA is already set up",
+      "single_instance_allowed": "Only one Nebula OTA instance is supported"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Nebula OTA",
+        "data": {
+          "builds_dir": "Build directory (absolute, or relative to the config folder)",
+          "base_url": "Base URL for download links (blank = auto-detect)",
+          "token": "Shared secret required as ?token= on the feed and downloads (blank = open on the LAN)",
+          "channel": "Default channel (romtype) for builds with no sidecar"
+        }
+      }
+    }
+  },
+  "services": {
+    "rescan": {
+      "name": "Rescan build library",
+      "description": "Re-read the Nebula OTA build directory now."
+    }
+  }
+}

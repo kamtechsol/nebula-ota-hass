@@ -1,0 +1,17 @@
+{
+  "domain": "nebula_ota",
+  "name": "Nebula OTA",
+  "codeowners": [
+    "@kamtechsol"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "http"
+  ],
+  "documentation": "https://github.com/kamtechsol/nebula-ota-hass",
+  "integration_type": "service",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/kamtechsol/nebula-ota-hass/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}

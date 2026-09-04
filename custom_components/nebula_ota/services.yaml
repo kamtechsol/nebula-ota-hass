@@ -1,0 +1,5 @@
+rescan:
+  name: Rescan build library
+  description: >
+    Re-read the Nebula OTA build directory now instead of waiting for the
+    5-minute automatic scan. Run this after dropping a new signed zip in.
