@@ -85,7 +85,11 @@ class BuildStore:
         for dev_dir in sorted(p for p in self._root.iterdir() if p.is_dir()):
             device = dev_dir.name
             builds: list[Build] = []
-            for zp in sorted(dev_dir.glob("*.zip")):
+            # *.zip = full Cosmos UI ROM builds (-> RecoverySystem on the panel).
+            # *.apk = panel app-only updates (-> PackageInstaller on the panel).
+            # Same feed/download schema either way; the panel tells them apart
+            # by which device/channel it asked for.
+            for zp in sorted(dev_dir.glob("*.zip")) + sorted(dev_dir.glob("*.apk")):
                 try:
                     builds.append(self._build_for(device, zp))
                 except OSError as err:  # noqa: PERF203

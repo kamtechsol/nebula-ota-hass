@@ -56,11 +56,15 @@ class NebulaOtaConfigFlow(ConfigFlow, domain=DOMAIN):
 
 class NebulaOtaOptionsFlow(OptionsFlow):
     def __init__(self, config_entry: ConfigEntry) -> None:
-        self.config_entry = config_entry
+        # Current HA exposes config_entry as a read-only property (populated
+        # by the flow manager) — assigning to it here throws and the options
+        # dialog 500s. Keep our own reference instead. See the identical fix
+        # in nebula-hass's NebulaOptionsFlow.
+        self._entry = config_entry
 
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> FlowResult:
         if user_input is not None:
             return self.async_create_entry(title="", data=user_input)
 
-        current = {**self.config_entry.data, **self.config_entry.options}
+        current = {**self._entry.data, **self._entry.options}
         return self.async_show_form(step_id="init", data_schema=_schema(current))
