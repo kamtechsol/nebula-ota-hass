@@ -57,6 +57,12 @@ class NebulaOtaLatestSensor(SensorEntity):
             name="Nebula OTA",
             manufacturer="Nebula",
             model="Cosmos UI update server",
+            # Nests this device under "Nebula Panel" (the Nebula Smart Home
+            # hub) in the device list — a separate HACS repo/domain, so this
+            # is a string-literal cross-integration reference by convention,
+            # not an import. Harmless if that device doesn't exist yet (HA
+            # just won't show the parent link until it does).
+            via_device=("nebula", "panel"),
         )
 
     async def async_added_to_hass(self) -> None:
